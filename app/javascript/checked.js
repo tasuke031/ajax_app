@@ -12,7 +12,7 @@ function check() {
       const postId = post.getAttribute("data-id");
       // Ajaxに必要なオブジェクトを生成している
       const XHR = new XMLHttpRequest();
-      // openでリクエストを初期化する
+      // openでリクエストを初期化する(リクエスト内容を決める)
       XHR.open("GET", `/posts/${postId}`, true);
       // レスポンスのタイプを指定する
       XHR.responseType = "json";
