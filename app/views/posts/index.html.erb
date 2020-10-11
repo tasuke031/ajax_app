@@ -1,6 +1,11 @@
 <h1>AjaxApp</h1>
-<%= form_with url: "/posts", method: :post,id: "form" do |form| %>
-  <%= form.text_field :content  , id: "content"%>
+<%= form_with url: "/posts", method: :post, id: "form" do |form| %>
+  名前:
+  <%= form.text_field :name, id: "name" %>
+  コメント:
+  <%= form.text_field :content, id: "content"%>
+  画像
+  <%= form.file_field :avatar, id: "image" %>
   <%= form.submit '投稿する' , id: "submit" %>
 <% end %>
 
@@ -10,10 +15,15 @@
 <% @posts.each do |post| %>
   <div class="post" data-id = <%= post.id %> data-check=<%= post.checked %>>
     <div class="post-date">
-      投稿日時：<%= post.created_at %>
+      名前:<%= post.name %>投稿日時：<%= post.created_at %>
     </div>
     <div class="post-content">
       <%= post.content %>
     </div>
+    <% if post.avatar? %>
+      <div>
+        <%= image_tag post.avatar.url, class: 'message-image' %>
+      </div>
+    <% end %>
   </div>
 <% end %>
